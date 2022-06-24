@@ -43,12 +43,26 @@ function createNewBox(style){
 function numberOfBoxGenerator (count, boxStyle){
 
     const boxContainer = document.querySelector('.box-container');
+    
     for (let i = 1; i <= count; i++) {
         const newBox = createNewBox(boxStyle);
 
         newBox.innerHTML = i;
+        console.log(newBox.innerHTML)
+        console.log(currentBlackList.includes(parseInt(newBox.innerHTML)));
 
-        addEventListenerAdd(newBox, 'azure');
+        console.log(parseInt(newBox.innerHTML))
+        console.log(currentBlackList);
+
+        if (currentBlackList.includes(newBox.innerHTML)){
+            addEventListenerAdd(newBox, 'red');
+            console.log('Boom')
+
+        } else {
+            addEventListenerAdd(newBox, 'azure');
+
+        }
+
 
         boxContainer.append(newBox);
 
@@ -59,13 +73,13 @@ function numberOfBoxGenerator (count, boxStyle){
 function addEventListenerAdd (htmlElement, classToToggle) {
         htmlElement.addEventListener('click', function() {
         htmlElement.classList.add(classToToggle);
-        console.log('hai cliccato' + "" + htmlElement.innerHTML)
+        console.log('hai cliccato' + " " + htmlElement.innerHTML);
         
     });
 }
 
 
-//uso un ciclo for per generare 16 numeri randomici unici;
+//uso un ciclo for per generare 16 numeri randomici;
 for (let i = 0; i < 16; i++){
     let uniqueRandomNumbers = generateUniqueRandomNumber (currentBlackList, 1, 100);
     currentBlackList.push(uniqueRandomNumbers);
