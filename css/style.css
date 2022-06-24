@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+}
+
+
+main {
+    padding: 5vh;
+    width: 100%;
+    height: 80vh;
+}
+
+header, footer {
+    width: 100%;
+    height: 10vh;
+    background-color: white;
+    text-align: center;
+}
+
+
+.box-container {
+    width: 600px;
+    height: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box-s {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+    
+}
+
+.box-m {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+    
+}
+
+.box-l {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    
+}
+
+ .box-s, .box-m, .box-l {
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.azure {
+    background-color: azure;
+}
+
