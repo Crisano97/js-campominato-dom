@@ -60,3 +60,12 @@ function addEventListenerAdd (htmlElement, classToToggle) {
         
     });
 }
+
+const generatedUniqueRandomNumbers = [];
+
+for (let i = 1; i <= 16; i++){
+    let randomNumber = Math.floor(Math.random() * (100 -1) + 1);
+    generatedUniqueRandomNumbers.push(randomNumber);
+}
+
+console.log(generatedUniqueRandomNumbers);
