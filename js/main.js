@@ -8,6 +8,7 @@ const difficultySelect = document.getElementById('game-level');
 const currentBlackList = [];
 
 playButton.addEventListener ('click', function(){
+
       
     mainContainer.innerHTML = "";
     
@@ -31,6 +32,7 @@ playButton.addEventListener ('click', function(){
 
     numberOfBoxGenerator(boxNumber,boxStyle);
 
+
 });
 
 function createNewBox(style){
@@ -48,21 +50,8 @@ function numberOfBoxGenerator (count, boxStyle){
         const newBox = createNewBox(boxStyle);
 
         newBox.innerHTML = i;
-        console.log(newBox.innerHTML)
-        console.log(currentBlackList.includes(parseInt(newBox.innerHTML)));
-
-        console.log(parseInt(newBox.innerHTML))
-        console.log(currentBlackList);
-
-        if (currentBlackList.includes(newBox.innerHTML)){
-            addEventListenerAdd(newBox, 'red');
-            console.log('Boom')
-
-        } else {
-            addEventListenerAdd(newBox, 'azure');
-
-        }
-
+      
+        addEventListenerAdd(newBox);
 
         boxContainer.append(newBox);
 
@@ -70,9 +59,24 @@ function numberOfBoxGenerator (count, boxStyle){
 }
 
 
-function addEventListenerAdd (htmlElement, classToToggle) {
-        htmlElement.addEventListener('click', function() {
-        htmlElement.classList.add(classToToggle);
+function addEventListenerAdd (htmlElement) {
+     
+   
+    htmlElement.addEventListener('click', function() {
+
+        const number = parseInt(htmlElement.innerHTML);
+
+        if (currentBlackList.includes(number)){
+            htmlElement.classList.add('red');
+            console.log('Boom')
+            alert('hai preso una bomba, hai perso');
+
+            
+
+        } else {
+            htmlElement.classList.add('azure');
+        }
+
         console.log('hai cliccato' + " " + htmlElement.innerHTML);
         
     });
