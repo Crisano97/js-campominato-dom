@@ -5,6 +5,8 @@ const mainContainer = document.getElementById('main-container');
 
 const difficultySelect = document.getElementById('game-level');
 
+const currentBlackList = [];
+
 playButton.addEventListener ('click', function(){
       
     mainContainer.innerHTML = "";
@@ -43,6 +45,7 @@ function numberOfBoxGenerator (count, boxStyle){
     const boxContainer = document.querySelector('.box-container');
     for (let i = 1; i <= count; i++) {
         const newBox = createNewBox(boxStyle);
+
         newBox.innerHTML = i;
 
         addEventListenerAdd(newBox, 'azure');
@@ -61,11 +64,28 @@ function addEventListenerAdd (htmlElement, classToToggle) {
     });
 }
 
-const generatedUniqueRandomNumbers = [];
 
-for (let i = 1; i <= 16; i++){
-    let randomNumber = Math.floor(Math.random() * (100 -1) + 1);
-    generatedUniqueRandomNumbers.push(randomNumber);
+//uso un ciclo for per generare 16 numeri randomici unici;
+for (let i = 0; i < 16; i++){
+    let uniqueRandomNumbers = generateUniqueRandomNumber (currentBlackList, 1, 100);
+    currentBlackList.push(uniqueRandomNumbers);
+
 }
+console.log(currentBlackList);
 
-console.log(generatedUniqueRandomNumbers);
+
+//creo una funzione che genera un numero randomico e verifica se il numero è presente o meno nell'array;
+function generateUniqueRandomNumber (blackList, minNum, maxNum) {
+    let newRandomNumber;
+    let isNumberValid = false;
+
+    while (isNumberValid === false){
+        newRandomNumber = Math.floor(Math.random() * (maxNum - minNum) + minNum)
+
+        if (!blackList.includes(newRandomNumber)){
+            isNumberValid = true;
+        }
+    }
+
+    return newRandomNumber;
+}
