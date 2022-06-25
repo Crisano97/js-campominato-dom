@@ -38,7 +38,6 @@ playButton.addEventListener('click', function () {
 
     
 
-
 });
 
 function createNewBox(style) {
@@ -101,6 +100,13 @@ function addEventListenerAdd(htmlElement) {
 
             let userScore = document.getElementById('punteggio');
             userScore.innerHTML = "SCORE:" + counter;
+            console.log(userScore.innerHTML)
+
+
+            if (counter === 84) {
+                alert('Hai vinto, ricarica la pagina per iniziare una nuova partita');
+                blockGame = true;
+            }
         } else {
             alert("Hai perso, ricarica la pagina e inizia una nuova partita");
         }
