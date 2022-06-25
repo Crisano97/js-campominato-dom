@@ -9,12 +9,6 @@ const currentBlackList = [];
 
 let blockGame;
 
-let sum = 0;
-
-let userScore = document.getElementById('punteggio');
-console.log(userScore)
-
-
 playButton.addEventListener('click', function () {
 
     blockGame = false;
@@ -62,11 +56,11 @@ function numberOfBoxGenerator(count, boxStyle) {
 
         newBox.innerHTML = i;
         
-        //console.log(newBox.innerHTML)
-        // console.log(currentBlackList.includes(parseInt(newBox.innerHTML)));
+        
+        // console.log(newBox.innerHTML)
+        //  console.log(currentBlackList.includes(parseInt(newBox.innerHTML)));
 
-        // console.log(parseInt(newBox.innerHTML))
-        // console.log(currentBlackList);
+        //  console.log(parseInt(newBox.innerHTML))
 
 
         addEventListenerAdd(newBox);
@@ -84,33 +78,31 @@ function addEventListenerAdd(htmlElement) {
 
 
         const number = parseInt(htmlElement.innerHTML);
-        console.log(number)
-
-        sum = sum + number;
-        console.log(sum)
-
-        userScore.innerHTML ="SCORE:" + sum;
 
 
         if (blockGame === false) {
             if (currentBlackList.includes(number)) {
                 htmlElement.classList.add('red');
                 console.log('Boom')
-                alert('hai preso una bomba, hai perso');           
+                alert('BOOM!');           
                 blockGame = true;
                 
             } else {
                 htmlElement.classList.add('azure');
 
                 
-                
             }
             // let counter = document.querySelectorAll('.azure').length;
             // console.log(counter); 
             console.log('hai cliccato' + " " + htmlElement.innerHTML);
 
+            let counter = document.querySelectorAll("." + 'azure').length;
+            console.log(counter)
+
+            let userScore = document.getElementById('punteggio');
+            userScore.innerHTML = "SCORE:" + counter;
         } else {
-            alert("La partita è finita, clicca su play e iniziane un'altra");
+            alert("Hai perso, ricarica la pagina e inizia una nuova partita");
         }
         
     });
