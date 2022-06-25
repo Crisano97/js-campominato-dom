@@ -9,10 +9,15 @@ const currentBlackList = [];
 
 let blockGame;
 
+let sum = 0;
+
+let userScore = document.getElementById('punteggio');
+console.log(userScore)
+
+
 playButton.addEventListener('click', function () {
 
     blockGame = false;
-    console.log(blockGame);
 
     mainContainer.innerHTML = "";
 
@@ -37,6 +42,8 @@ playButton.addEventListener('click', function () {
 
     numberOfBoxGenerator(boxNumber, boxStyle);
 
+    
+
 
 });
 
@@ -50,12 +57,12 @@ function createNewBox(style) {
 function numberOfBoxGenerator(count, boxStyle) {
 
     const boxContainer = document.querySelector('.box-container');
-
     for (let i = 1; i <= count; i++) {
         const newBox = createNewBox(boxStyle);
 
         newBox.innerHTML = i;
-        // console.log(newBox.innerHTML)
+        
+        //console.log(newBox.innerHTML)
         // console.log(currentBlackList.includes(parseInt(newBox.innerHTML)));
 
         // console.log(parseInt(newBox.innerHTML))
@@ -77,6 +84,13 @@ function addEventListenerAdd(htmlElement) {
 
 
         const number = parseInt(htmlElement.innerHTML);
+        console.log(number)
+
+        sum = sum + number;
+        console.log(sum)
+
+        userScore.innerHTML ="SCORE:" + sum;
+
 
         if (blockGame === false) {
             if (currentBlackList.includes(number)) {
@@ -87,8 +101,12 @@ function addEventListenerAdd(htmlElement) {
                 
             } else {
                 htmlElement.classList.add('azure');
+
+                
                 
             }
+            // let counter = document.querySelectorAll('.azure').length;
+            // console.log(counter); 
             console.log('hai cliccato' + " " + htmlElement.innerHTML);
 
         } else {
@@ -123,3 +141,4 @@ function generateUniqueRandomNumber(blackList, minNum, maxNum) {
 
     return newRandomNumber;
 }
+
