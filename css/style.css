@@ -29,6 +29,7 @@ header, footer {
     margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
+    /* z-index: 3; */
 }
 
 .box-s {
@@ -50,6 +51,7 @@ header, footer {
 }
 
  .box-s, .box-m, .box-l {
+    z-index: 9;
     border: 2px solid white;
     display: flex;
     align-items: center;
@@ -65,3 +67,5 @@ header, footer {
 .red {
     background-color: red;
 }
+
+

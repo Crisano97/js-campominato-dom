@@ -7,12 +7,17 @@ const difficultySelect = document.getElementById('game-level');
 
 const currentBlackList = [];
 
-playButton.addEventListener ('click', function(){
+let blockGame;
 
-      
+playButton.addEventListener('click', function () {
+
+    blockGame = false;
+    console.log(blockGame);
+
     mainContainer.innerHTML = "";
-    
+
     let newElementDiv = createNewBox('box-container', 'd-flex');
+
 
     mainContainer.append(newElementDiv);
 
@@ -30,27 +35,33 @@ playButton.addEventListener ('click', function(){
         boxStyle = 'box-s';
     }
 
-    numberOfBoxGenerator(boxNumber,boxStyle);
+    numberOfBoxGenerator(boxNumber, boxStyle);
 
 
 });
 
-function createNewBox(style){
+function createNewBox(style) {
     const currentBox = document.createElement('div');
     currentBox.classList.add(style);
     return currentBox;
 }
 
 
-function numberOfBoxGenerator (count, boxStyle){
+function numberOfBoxGenerator(count, boxStyle) {
 
     const boxContainer = document.querySelector('.box-container');
-    
+
     for (let i = 1; i <= count; i++) {
         const newBox = createNewBox(boxStyle);
 
         newBox.innerHTML = i;
-      
+        // console.log(newBox.innerHTML)
+        // console.log(currentBlackList.includes(parseInt(newBox.innerHTML)));
+
+        // console.log(parseInt(newBox.innerHTML))
+        // console.log(currentBlackList);
+
+
         addEventListenerAdd(newBox);
 
         boxContainer.append(newBox);
@@ -59,33 +70,38 @@ function numberOfBoxGenerator (count, boxStyle){
 }
 
 
-function addEventListenerAdd (htmlElement) {
-     
-   
-    htmlElement.addEventListener('click', function() {
+function addEventListenerAdd(htmlElement) {
+
+
+    htmlElement.addEventListener('click', function () {
+
 
         const number = parseInt(htmlElement.innerHTML);
 
-        if (currentBlackList.includes(number)){
-            htmlElement.classList.add('red');
-            console.log('Boom')
-            alert('hai preso una bomba, hai perso');
-
-            
+        if (blockGame === false) {
+            if (currentBlackList.includes(number)) {
+                htmlElement.classList.add('red');
+                console.log('Boom')
+                alert('hai preso una bomba, hai perso');           
+                blockGame = true;
+                
+            } else {
+                htmlElement.classList.add('azure');
+                
+            }
+            console.log('hai cliccato' + " " + htmlElement.innerHTML);
 
         } else {
-            htmlElement.classList.add('azure');
+            alert("La partita è finita, clicca su play e iniziane un'altra");
         }
-
-        console.log('hai cliccato' + " " + htmlElement.innerHTML);
         
     });
 }
 
 
 //uso un ciclo for per generare 16 numeri randomici;
-for (let i = 0; i < 16; i++){
-    let uniqueRandomNumbers = generateUniqueRandomNumber (currentBlackList, 1, 100);
+for (let i = 0; i < 16; i++) {
+    let uniqueRandomNumbers = generateUniqueRandomNumber(currentBlackList, 1, 100);
     currentBlackList.push(uniqueRandomNumbers);
 
 }
@@ -93,14 +109,14 @@ console.log(currentBlackList);
 
 
 //creo una funzione che genera un numero randomico e verifica se il numero è presente o meno nell'array;
-function generateUniqueRandomNumber (blackList, minNum, maxNum) {
+function generateUniqueRandomNumber(blackList, minNum, maxNum) {
     let newRandomNumber;
     let isNumberValid = false;
 
-    while (isNumberValid === false){
+    while (isNumberValid === false) {
         newRandomNumber = Math.floor(Math.random() * (maxNum - minNum) + minNum)
 
-        if (!blackList.includes(newRandomNumber)){
+        if (!blackList.includes(newRandomNumber)) {
             isNumberValid = true;
         }
     }
