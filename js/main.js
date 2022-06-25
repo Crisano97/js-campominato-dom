@@ -24,6 +24,7 @@ playButton.addEventListener('click', function () {
 
     let boxNumber = 100;
     let boxStyle = 'box-l';
+    
 
     if (selectValue == 2) {
         boxNumber = 81;
@@ -33,6 +34,23 @@ playButton.addEventListener('click', function () {
         boxNumber = 49;
         boxStyle = 'box-s';
     }
+
+
+    for (let i = 0; i < 16; i++) {
+
+        if (boxNumber === 100) {
+            let uniqueRandomNumbers = generateUniqueRandomNumber(currentBlackList, 1, 100);
+            currentBlackList.push(uniqueRandomNumbers);
+        } else if (boxNumber === 81) {
+            let uniqueRandomNumbers = generateUniqueRandomNumber(currentBlackList, 1, 81);
+            currentBlackList.push(uniqueRandomNumbers);
+        } else if (boxNumber === 49) {
+            let uniqueRandomNumbers = generateUniqueRandomNumber(currentBlackList, 1, 49);
+            currentBlackList.push(uniqueRandomNumbers);
+        }
+    
+    }
+    console.log(currentBlackList);
 
     numberOfBoxGenerator(boxNumber, boxStyle);
 
@@ -116,12 +134,6 @@ function addEventListenerAdd(htmlElement) {
 
 
 //uso un ciclo for per generare 16 numeri randomici;
-for (let i = 0; i < 16; i++) {
-    let uniqueRandomNumbers = generateUniqueRandomNumber(currentBlackList, 1, 100);
-    currentBlackList.push(uniqueRandomNumbers);
-
-}
-console.log(currentBlackList);
 
 
 //creo una funzione che genera un numero randomico e verifica se il numero è presente o meno nell'array;
